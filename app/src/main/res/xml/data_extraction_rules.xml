@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+   Sample data extraction rules file; uncomment and customize as necessary.
+   See https://developer.android.com/about/versions/12/backup-restore#xml-changes
+   for details.
+-->
+<data-extraction-rules>
+    <cloud-backup>
+        <!-- Use <include> and <exclude> to control what is backed up.
+        <include .../>
+        <exclude .../>
+        -->
+        <exclude>
+            # Built application files
+            *.apk
+            *.apks
+
+            # Files for the Gradle Wrapper
+            gradle/wrapper/gradle-wrapper.jar
+            gradle/wrapper/gradle-wrapper.properties
+
+            # Local configuration file (SDK path, etc.)
+            local.properties
+
+            # Android Studio generated files
+            .idea/
+
+            # Compiled output and temporary files
+            build/
+            *.log
+            *.tmp
+            *.bak
+
+            # OS-specific files
+            .DS_Store
+            Thumbs.db
+
+            # Generated module files
+            *.iml
+
+            # User-specific files
+            /.gradle/
+            /captures/
+        </exclude>
+    </cloud-backup>
+    <!--
+    <device-transfer>
+        <include .../>
+        <exclude .../>
+    </device-transfer>
+    -->
+</data-extraction-rules>
