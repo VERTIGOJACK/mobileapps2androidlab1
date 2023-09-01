@@ -1,4 +1,4 @@
-package se.vertigodigital.mobileapps2lab1.ui.notifications;
+package se.vertigodigital.mobileapps2lab1.ui.about;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import se.vertigodigital.mobileapps2lab1.databinding.FragmentNotificationsBinding;
+import se.vertigodigital.mobileapps2lab1.databinding.FragmentAboutBinding;
 
-public class NotificationsFragment extends Fragment {
+public class AboutFragment extends Fragment {
 
-    private FragmentNotificationsBinding binding;
+    private FragmentAboutBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        NotificationsViewModel notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
+        AboutViewModel aboutViewModel =
+                new ViewModelProvider(this).get(AboutViewModel.class);
 
-        binding = FragmentNotificationsBinding.inflate(inflater, container, false);
+        binding = FragmentAboutBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textNotifications;
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        aboutViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 

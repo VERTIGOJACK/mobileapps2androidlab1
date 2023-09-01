@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         //Create configuration object using builder, this config defines top level destinations for app,
         //this works by providing the builder with ids for our different fragments.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
+                R.id.navigation_home, R.id.navigation_publications, R.id.navigation_about)
                 .build();
 
         //Part of android navigation component, helps us navigate between different destinations in our app

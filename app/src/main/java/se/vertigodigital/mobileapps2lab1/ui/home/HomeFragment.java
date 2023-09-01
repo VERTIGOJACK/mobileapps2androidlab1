@@ -40,30 +40,12 @@ public class HomeFragment extends Fragment {
         // a non changing reference to the textview of the binding variable
         // this seems to be a declaration of the initial value only
         final TextView textView = binding.textHome;
-        final TextView textHomeCounter = binding.textHomeCounter;
 
         // reference to the viewmodel, getText is a method defined inside the viewmodel (it could be called anything);
-        // then we declare that we want to observe for changes on the gettext, for the duration of the fragments lifecycle.
+        // then we declare that we want to observe for changes on the gettext method of our viewmodekl, for the duration of the fragments lifecycle.
         //when a change is observed, settext will be called on the tewtview object.
-        //textview recieves the new data from gettext implicitly.
+        //textview recieves the new data to set from gettext, implicitly.
         homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
-        // Create the observer which updates the UI.
-        final Observer<Integer> intObserver = new Observer<Integer>() {
-            @Override
-            public void onChanged(@Nullable final Integer integValue) {
-                // Update the UI, in this case, a TextView.
-                textHomeCounter.setText(integValue.toString());
-            }
-        };
-
-        homeViewModel.getInt().observe(getViewLifecycleOwner(), intObserver);
-
-
-        //new clicklistener for home button
-        binding.buttonHome.setOnClickListener(view ->{
-            homeViewModel.increaseNumber();
-        }) ;
 
         return root;
     }
