@@ -11,7 +11,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
+
+import se.vertigodigital.mobileapps2lab1.classes.latestupload.LatestUploads;
 import se.vertigodigital.mobileapps2lab1.databinding.FragmentPublicationsBinding;
 import se.vertigodigital.mobileapps2lab1.ui.home.HomeViewModel;
 
@@ -27,13 +32,14 @@ public class PublicationsFragment extends Fragment {
         binding = FragmentPublicationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-
         // Create the observer which updates the UI.
-        final Observer<String> dataObserver = stringData -> {
+        final Observer<LatestUploads> dataObserver = uploads -> {
 
             //Update the UI, in this case, a TextView.
-            textView.setText(stringData);
+            //textView.setText(uploads.getCopyright());
+            //this is where we attach our recyclerview
+            mapResult(uploads);
+
         };
 
         //initiate observer
@@ -46,5 +52,25 @@ public class PublicationsFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void mapResult(LatestUploads uploads){
+
+        // get the recycler from the view
+        final RecyclerView recyclerView = binding.uploadsRecycler;
+        //create and set a layoutmanager for the recyclerview, set orientation to vertical also
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // set an adapter for this view, TODO: implement adapter
+        //feed uploads into recyclerview adapter.
+
+        try {
+            recyclerView.setAdapter(new PublicationsRecyclerViewAdapter(uploads.getShows()));
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }

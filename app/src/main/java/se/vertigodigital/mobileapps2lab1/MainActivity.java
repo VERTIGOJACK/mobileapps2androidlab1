@@ -1,5 +1,6 @@
 package se.vertigodigital.mobileapps2lab1;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -9,6 +10,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import java.util.Locale;
 
 import se.vertigodigital.mobileapps2lab1.databinding.ActivityMainBinding;
 
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     // that entered text could be saved in the savedInstanceState.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         //calls superclass oncreate method with the bundle
         super.onCreate(savedInstanceState);
 
