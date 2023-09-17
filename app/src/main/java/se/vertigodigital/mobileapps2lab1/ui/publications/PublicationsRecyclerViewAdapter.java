@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.io.Console;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 import se.vertigodigital.mobileapps2lab1.R;
@@ -66,7 +69,10 @@ public class PublicationsRecyclerViewAdapter extends RecyclerView.Adapter<Public
             }
 
             if (item.getTitle() != null) {
-                holder.mTitleView.setText(item.getTitle());
+                //titles sometimes contain timestamps, we use regex to remove
+                String title = item.getTitle();
+                String result = title.replaceAll("[^a-zA-ZåäöÅÄÖ\\s-.,]", "");
+                holder.mTitleView.setText(result);
             }
             if (item.getProgram() != null){
                 if(item.getProgram().getName() != null) {
@@ -76,12 +82,40 @@ public class PublicationsRecyclerViewAdapter extends RecyclerView.Adapter<Public
 
             // TODO: probably do some calcs here for both date and duration bofore setting
             if( item.getDateutc() != null) {
-                holder.mDateView.setText(item.getDateutc());
+
+                //save date string
+                String dateString = item.getDateutc();
+
+                // Extract the timestamp (chatgpt provided regex)
+                dateString = dateString.replaceAll("/Date\\(|\\)/", "");
+
+                // parse string to long
+                long timestamp = Long.parseLong(dateString);
+
+                // convert to date
+                Date date = new Date(timestamp);
+
+                //declare date format
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+                holder.mDateView.setText(dateFormat.format(date));
             }
 
             if (item.getListenpodfile() != null) {
                 if(item.getListenpodfile().getDuration() != null) {
-                    holder.mDurationView.setText(item.getListenpodfile().getDuration().toString());
+                    int duration = item.getListenpodfile().getDuration();
+
+
+                    int minutes = duration / 60;
+                    int seconds = duration % 60;
+
+                    // Format the result with zero-padding
+                    //"%d" specifies that you want to format an integer.
+                    //"02" specifies the minimum width of the field,
+
+                    String formattedTime = String.format("%02d:%02d", minutes, seconds);
+
+                    holder.mDurationView.setText(formattedTime);
                 }
             }
 

@@ -60,9 +60,9 @@ public class PublicationsViewModel extends AndroidViewModel {
         // and two eventlisteners, one for success and error respectively.
         // the success listeners callback method handles string type.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, apiUrl, (Response.Listener<String>) response -> {
-            Log.e("response", response);
 
             byte[] u = new byte[0];
+
             try {
                 u = response.toString().getBytes("ISO-8859-1");
             } catch (UnsupportedEncodingException e) {

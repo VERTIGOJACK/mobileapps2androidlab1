@@ -37,6 +37,7 @@ public class PublicationsFragment extends Fragment {
 
             //Update the UI, in this case, a TextView.
             //textView.setText(uploads.getCopyright());
+
             //this is where we attach our recyclerview
             mapResult(uploads);
 
@@ -63,9 +64,8 @@ public class PublicationsFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
-        // set an adapter for this view, TODO: implement adapter
+        // set an adapter for this view,
         //feed uploads into recyclerview adapter.
-
         try {
             recyclerView.setAdapter(new PublicationsRecyclerViewAdapter(uploads.getShows()));
         }
